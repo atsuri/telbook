@@ -1,0 +1,34 @@
+<%# 詳細　電話番号見える画面 %>
+<h2><%= @friend.name %></h2>
+<table class="attr">
+    <thead>
+        <tr>
+            <th>番号</th>
+            <th>携帯</th>
+            <td>削除</td>
+        </tr>
+    </thead>
+    <tbody>
+        <% @friend.telephones&.each do |tel| %>
+            <tr>
+                <th><%= tel.number %></th>
+                <th><%= tel.cellphone ? "✔️" : "　" %></th>
+                <td>
+                    <%= button_to "delete", tel, method: :delete,
+                        data: { confirm: "本当に削除しますか？" } %>
+                </td>
+            </tr>
+        <% end %>
+
+    <%# 電話番号 %>
+        <tr>
+            <%= form_tag [@friend, :telephones] do %>
+                <th><%= text_field_tag :number %></th>
+                <th><%= check_box_tag :cellphone %></th>
+                <td><%= submit_tag "add" %><td>
+            <% end %>
+        </tr>
+    </tbody>
+</table>
+
+<h3><%= link_to "<<Top", :root %></h3>
