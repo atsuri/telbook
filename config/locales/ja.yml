@@ -4,7 +4,7 @@ ja:
       friend: 友達
       telephone: 電話番号
     attributes:
-      member:
+      friend:
         name: 名前
       telephone:
         number: 番号
