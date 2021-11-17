@@ -1,0 +1,14 @@
+ja:
+  activerecord:
+    models:
+      friend: 友達
+      telephone: 電話番号
+    attributes:
+      member:
+        name: 名前
+      telephone:
+        number: 番号
+    errors:
+      messages:
+        invalid_friend_name: は10字以内にしてください。
+        invalid_telephone_number: は8〜20字で半角数字、()、-のみにしてください。

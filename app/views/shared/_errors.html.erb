@@ -1,0 +1,11 @@
+<% if obj&&obj.errors.present? %> 
+<%#  　↑　Nilの場合 %>
+    <div id="errors">
+        <h3>エラーがあります。</h3>
+        <ul>
+            <% obj.errors.full_messages.each do |msg| %>
+                <li><%= msg %></li>
+            <% end %>
+        </ul>
+    </div>
+<% end %>

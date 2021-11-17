@@ -1,12 +1,5 @@
 class TelephonesController < ApplicationController
-    def index
-        @telephones = Telephone.all
-    end
-
-    def show
-        @telephones = Telephone.all
-    end
-
+    
     #登録
     def create
         @telephone = Telephone.new
@@ -15,7 +8,7 @@ class TelephonesController < ApplicationController
         @telephone.friend = Friend.find(params[:friend_id])
         if @telephone.save
             # redirect_to :friend
-            redirect_to Friend.find(params[:friend_id])
+            redirect_to Friend.find(params[:friend_id]), notice: "登録しました。"
         else
             @friend = Friend.find(params[:friend_id])
             render "friends/show"
@@ -28,6 +21,6 @@ class TelephonesController < ApplicationController
         friend = @telephone.friend
         @telephone.destroy
         # redirect_to :friend
-        redirect_to friend
+        redirect_to friend, notice: "削除しました。"
     end
 end
