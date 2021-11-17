@@ -1,21 +1,36 @@
 <% @page_title = "Telephone Book"%>
 <h1><%= @page_title %></h1>
 <div class="toolbar"><%= link_to "add", :new_friend %></div>
-<%# <%= button_to "add", :new_friend %>
+<%# <%= button_to "add", :new_friend これ失敗する%>
 <%# deleteは,link_toをbutton_toに直すだけでできた。 %>
 
-<% num = 1 %>
-<table class="attr">
-    <% @friends.each do |friend| %>
-        <tr>
-            <th><%= num %></th>
-            <td><%= link_to friend.name, friend %></td>
-            <td><%= link_to "edit", [:edit, friend] %></td>
-            <td><%= link_to "delete", friend, method: :delete,
-                data: { confirm: "本当に削除しますか？" } %></td>
-        </tr>
-    <% num = num+1 %>
-    <%= paginate @friends %>
-    <% end %>
-</table>
+<% if @friends.present? %>
+
+    <% num = 1 %>
+    <table class="attr">
+        <thead>
+            <tr>
+                <th></th>
+                <th>名前</th>
+                <th>編集</th>
+                <th>削除</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% @friends.each do |friend| %>
+                <tr>
+                    <th><%= num %></th>
+                    <td><%= link_to friend.name, friend %></td>
+                    <td><%= link_to "edit", [:edit, friend] %></td>
+                    <td><%= link_to "delete", friend, method: :delete,
+                        data: { confirm: "本当に削除しますか？" } %></td>
+                </tr>
+            <% num = num+1 %>
+            <% end %>
+        </tbody>
+        <%= paginate @friends %>
+    </table>
+<% else %>
+    <p>友達が登録されていません。</p>
+<% end %>
 
